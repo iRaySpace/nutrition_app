@@ -8,7 +8,6 @@ import 'widgets/profile_info_card.dart';
 
 
 final info = [
-  'Fat',
   'Saturated',
   'Transfat',
   'Carbohydrates',
@@ -72,14 +71,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            ProfileInfoCard(
-              title: 'Fat (g)',
-              subtitle: 'Recommended: ${_recommended.fat.toStringAsFixed(2)}',
-              secondSubtitle: 'Current: ${_taken.fat.toStringAsFixed(2)}',
-              othersText: _getSurplusDeficitText(_recommended.fat, _taken.fat),
-              color: _getColor(_recommended.fat, _taken.fat),
-              textColor: Colors.white,
-            ),
             ProfileInfoCard(
               title: 'Saturated Fat (mg)',
               subtitle: 'Recommended: ${_recommended.saturatedFat.toStringAsFixed(2)}',
