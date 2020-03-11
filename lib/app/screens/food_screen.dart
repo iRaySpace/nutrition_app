@@ -10,6 +10,7 @@ class FoodScreen extends StatefulWidget {
 }
 
 class _FoodScreenState extends State<FoodScreen> {
+  String _search = '';
   List<FoodModel> _foods;
 
   void _navigateToDetail(String foodName) {
@@ -20,13 +21,23 @@ class _FoodScreenState extends State<FoodScreen> {
 
   List<Widget> _buildFoodCards() {
     _foods.sort((a, b) => a.name.compareTo(b.name));
-    return _foods.map((food) =>
+    List<FoodModel> filteredFoods = _foods.where((food) {
+      String foodName = food.name.toLowerCase();
+      return foodName.contains(_search.toLowerCase());
+    }).toList();
+    return filteredFoods.map((food) =>
       FoodCard(
         title: food.name,
         subtitle: '${food.totalCalories} Calories',
         onTap: () => _navigateToDetail(food.name),
       )
     ).toList();
+  }
+
+  void _onChangedSearch(value) {
+    setState(() {
+      _search = value;
+    });
   }
 
   @override
@@ -81,7 +92,18 @@ class _FoodScreenState extends State<FoodScreen> {
                       vertical: 25.0,
                       horizontal: 11.0,
                     ),
-                    child: Column(children: _buildFoodCards()),
+                    child: Column(
+                      children: [
+                        TextField(
+                          onChanged: _onChangedSearch,
+                          decoration: InputDecoration(
+                            hintText: 'Search food...',
+                          ),
+                        ),
+                        SizedBox(height: 35.0),
+                        ..._buildFoodCards(),
+                      ],
+                    ),
                   ),
                 ),
               ), 
