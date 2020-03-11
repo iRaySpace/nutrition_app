@@ -19,6 +19,7 @@ class _FoodScreenState extends State<FoodScreen> {
   }
 
   List<Widget> _buildFoodCards() {
+    _foods.sort((a, b) => a.name.compareTo(b.name));
     return _foods.map((food) =>
       FoodCard(
         title: food.name,
