@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vibration/vibration.dart';
 import 'package:nutrition_app/app/screens/food_screen.dart';
 
 
@@ -14,6 +15,18 @@ class RecommendationScreen extends StatefulWidget {
 class _RecommendationScreenState extends State<RecommendationScreen> {
   int _currentPage = 0;
   int _pages = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _vibrate();
+  }
+
+  Future<void> _vibrate() async {
+    if (await Vibration.hasVibrator()) {
+      Vibration.vibrate();
+    }
+  }
 
   void _onContinue(BuildContext context) {
     // pages are zero-index
