@@ -27,7 +27,7 @@ class FoodDetailCard extends StatelessWidget {
             Text(
               this.content,
               style: TextStyle(
-                fontSize: 36.0,
+                fontSize: 24.0,
                 fontWeight: FontWeight.w300,
               )  
             ),

@@ -58,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
       return <Widget>[
         Text(
           'Foods Taken',
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 21.0,
             color: Colors.black45,
@@ -70,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return [
       Text(
         'Foods Taken',
+        textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 21.0,
           color: Colors.black45,
@@ -78,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
       SizedBox(height: 15.0),
       Text(
         'Please log your intakes.',
+        textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.black45,
         ),
@@ -165,6 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 25.0),
               Container(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: _buildFoodsTaken(),
                 ),
               ),
