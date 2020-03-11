@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nutrition_app/app/screens/food_detail_screen.dart';
 import 'package:nutrition_app/app/screens/widgets/food_detail_card.dart';
 import 'package:nutrition_app/app/shared_widgets/app_drawer.dart';
 import 'package:nutrition_app/core/models/intake_model.dart';
-import '../../core/repositories/intake_repository.dart';
-import '../../core/repositories/profile_repository.dart';
+import 'package:nutrition_app/core/repositories/intake_repository.dart';
+import 'package:nutrition_app/core/repositories/profile_repository.dart';
 import 'widgets/gradient_appbar.dart';
 import 'food_screen.dart';
 import 'recommendation_screen.dart';
@@ -48,9 +49,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> _buildFoodsTaken() {
     List<Widget> foodsTaken = _intakesToday.map((intake) =>
-      FoodDetailCard(
-        title: '= ${intake.totalCalories.toStringAsFixed(2)} calories',
-        content: intake.foodName,
+      InkWell(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) =>
+                FoodDetailScreen(name: intake.foodName, disableAdd: true)),
+          );
+        },
+        child: FoodDetailCard(
+          title: '= ${intake.totalCalories.toStringAsFixed(2)} calories',
+          content: intake.foodName,
+        ),
       )
     ).toList();
 

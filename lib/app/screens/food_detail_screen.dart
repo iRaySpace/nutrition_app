@@ -6,11 +6,15 @@ import 'package:nutrition_app/core/repositories/intake_repository.dart';
 import 'widgets/food_details_column.dart';
 
 class FoodDetailScreen extends StatefulWidget {
-  final String name;
   FoodDetailScreen({
     Key key,
     @required this.name,
+    this.disableAdd = false,
   }) : super(key: key);
+
+  final String name;
+  final bool disableAdd;
+
   @override
   _FoodDetailScreenState createState() => _FoodDetailScreenState();
 }
@@ -122,10 +126,12 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
             Navigator.of(context).pop();
           },
         ),
-        FlatButton(
-          child: Text('Add'),
-          onPressed: _onAdd,
-        ),
+        widget.disableAdd == false
+          ? FlatButton(
+              child: Text('Add'),
+              onPressed: _onAdd,
+            )
+          : null,
       ],
     );
   }
