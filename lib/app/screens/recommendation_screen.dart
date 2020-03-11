@@ -39,8 +39,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFFFFE729),
-              Color(0xFFFF8270),
+              Color(0xFFEA4C46),
+              Color(0xFFDC1C13),
             ],
           )
         ),
@@ -49,22 +49,29 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Icon(
-                Icons.fastfood,
+                Icons.error,
                 size: 128.0,
                 color: Colors.white,
               ),
               SizedBox(height: 35.0),
               Text(
-                'Excess ${recommendation['category']} of ${recommendation['value'].round()}',
+                'Excess ${recommendation['category']} of ${recommendation['value'].round()}!',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 32.0,
                 ),
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 25.0),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
-                child: Text('${recommendation['recommendation']}'),
+                child: Text(
+                  '${recommendation['recommendation']}',
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                ),
               ),
             ],
           ),
