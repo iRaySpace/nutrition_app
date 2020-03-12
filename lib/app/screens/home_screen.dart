@@ -48,17 +48,32 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> _buildFoodsTaken() {
-    List<Widget> foodsTaken = _intakesToday.map((intake) =>
+    final List<_IntakeDisplay> intakeDisplays = [];
+    _intakesToday.forEach((intake) {
+      final existing = intakeDisplays.where((display) =>
+        display.intake.foodName == intake.foodName).toList();
+      if (existing.isNotEmpty) {
+        final existingIntake = existing[0];
+        existingIntake.qty = existingIntake.qty + 1;
+      } else {
+        intakeDisplays.add(_IntakeDisplay(intake, 1));
+      }
+    });
+    List<Widget> foodsTaken = intakeDisplays.map((display) =>
       InkWell(
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(builder: (_) =>
-                FoodDetailScreen(name: intake.foodName, disableAdd: true)),
+              FoodDetailScreen(
+                name: display.intake.foodName,
+                disableAdd: true,
+              )
+            ),
           );
         },
         child: FoodDetailCard(
-          title: '= ${intake.totalCalories.toStringAsFixed(2)} calories',
-          content: intake.foodName,
+          title: '= ${(display.intake.totalCalories * display.qty).toStringAsFixed(2)} calories',
+          content: '${display.intake.foodName} x ${display.qty}',
         ),
       )
     ).toList();
@@ -194,4 +209,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+class _IntakeDisplay {
+  _IntakeDisplay(this.intake, this.qty);
+  IntakeModel intake;
+  int qty;
 }
