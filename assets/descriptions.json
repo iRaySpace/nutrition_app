@@ -1,0 +1,26 @@
+[
+  {
+    "category": "Saturated Fat",
+    "description": "A fat that contains only saturated fatty acids, is solid at room temperature, and comes chiefly from animal food products. Some examples of saturated fat are butter, lard, meat fat, solid shortening, palm oil, and coconut oil. Saturated fat tends to raise the level of cholesterol in the blood."
+  },
+  {
+    "category": "Trans Fat",
+    "description": "An unhealthy substance that is made through the chemical process of hydrogenation of oils. Hydrogenation solidifies liquid oils and increases the shelf life and the flavor stability of oils and foods that contain them. Trans fatty acids aree found in vegetable shortening and in some margarine, crackers, acids, and snack foods. Trans fatty acids are also found in abundance in many deep-fried foods."
+  },
+  {
+    "category": "Carbohydrates",
+    "description": "Carbohydrates are the sugars, starches, and fibers found in fruits, grains, vegetables, and milk products. They are called carbohydrates because, at the chemical level, they contain carbon, hydrogen, and oxygen."
+  },
+  {
+    "category": "Added Sugar",
+    "description": "Sugars in our diet can be naturally occurring or added. Naturally occurring sugars are found naturally in foods such as fruit (fructose) and milk (lactose). Added sugars are sugars and syrups put in foods during preparation or prpocessing, or added at the table."
+  },
+  {
+    "category": "Sodium",
+    "description": "Sodium is a mineral that occurs naturally in foods or is added during manufacturing or both. Table salt is a combination of sodium and chloride. Excess sodium increases blood pressure because it holds excess fluid in the body, and that creates an added burden on the heart."
+  },
+  {
+    "category": "Proteins",
+    "description": "Proteins are nutrients found in food (as meat, milk, eggs, and beans) that is made up of many amino acids joined together, is a necessary part of the diet, and is essential for normal cell structure and function."
+  }
+]

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/app/screens/profile_description_screen.dart';
 import 'package:nutrition_app/app/screens/widgets/gradient_appbar.dart';
 import 'package:nutrition_app/app/shared_widgets/app_drawer.dart';
 import 'package:nutrition_app/core/models/profile_intake_model.dart';
@@ -56,6 +57,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Colors.green;
   }
 
+  void _navigateToDescription(String category) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) =>
+        ProfileDescriptionScreen(name: category)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,6 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               othersText: _getSurplusDeficitText(_recommended.saturatedFat, _taken.saturatedFat),
               color: _getColor(_recommended.saturatedFat, _taken.saturatedFat),
               textColor: Colors.white,
+              onTap: () => _navigateToDescription('Saturated Fat'),
             ),
             ProfileInfoCard(
               title: 'Trans Fat (mg)',
@@ -86,6 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               othersText: _getSurplusDeficitText(_recommended.transFat, _taken.transFat),
               color: _getColor(_recommended.transFat, _taken.transFat),
               textColor: Colors.white,
+              onTap: () => _navigateToDescription('Trans Fat'),
             ),
             ProfileInfoCard(
               title: 'Carbohydrates (g)',
@@ -94,6 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               othersText: _getSurplusDeficitText(_recommended.carbs, _taken.carbs),
               color: _getColor(_recommended.carbs, _taken.carbs),
               textColor: Colors.white,
+              onTap: () => _navigateToDescription('Carbohydrates'),
             ),
             ProfileInfoCard(
               title: 'Added Sugar (g)',
@@ -102,6 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               othersText: _getSurplusDeficitText(_recommended.addedSugar, _taken.addedSugar),
               color: _getColor(_recommended.addedSugar, _taken.addedSugar),
               textColor: Colors.white,
+              onTap: () => _navigateToDescription('Added Sugar'),
             ),
             ProfileInfoCard(
               title: 'Sodium (mg)',
@@ -110,6 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               othersText: _getSurplusDeficitText(_recommended.sodium, _taken.sodium),
               color: _getColor(_recommended.sodium, _taken.sodium),
               textColor: Colors.white,
+              onTap: () => _navigateToDescription('Sodium'),
             ),
             ProfileInfoCard(
               title: 'Protein (g)',
@@ -118,6 +131,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               othersText: _getSurplusDeficitText(_recommended.protein, _taken.protein),
               color: _getColor(_recommended.protein, _taken.protein),
               textColor: Colors.white,
+              onTap: () => _navigateToDescription('Proteins'),
             ),
           ],
         ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
+import 'package:nutrition_app/core/models/description_model.dart';
 import 'package:nutrition_app/core/models/profile_intake_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:nutrition_app/core/models/intake_model.dart';
@@ -10,16 +11,22 @@ import 'package:nutrition_app/core/models/recommendation_model.dart';
 class IntakeRepository {
   SharedPreferences _prefs;
   List<IntakeModel> _intakes;
+  List<DescriptionModel> _descriptions;
   List<RecommendationModel> _recommendations;
 
   // singleton
-  IntakeRepository._internal() : _intakes = [], _recommendations = [];
+  IntakeRepository._internal()
+      : _intakes = [],
+        _descriptions = [],
+        _recommendations = [];
+
   static IntakeRepository _instance = IntakeRepository._internal();
   factory IntakeRepository() => _instance;
 
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
     await _loadRecommendations();
+    await _loadDescriptions();
     _loadData();
   }
 
@@ -157,6 +164,10 @@ class IntakeRepository {
     return intakes;
   }
 
+  DescriptionModel getDescription(String category) {
+    return _descriptions.firstWhere((description) =>
+      description.category == category);
+  }
 
   ///
   /// Returns the excess of food intakes
@@ -242,6 +253,14 @@ class IntakeRepository {
   Future<void> _loadRecommendations() async {
     String data = await rootBundle.loadString('assets/recommendations.json');
     List<dynamic> recommendations = json.decode(data);
-    _recommendations = recommendations.map((recommendation) => RecommendationModel.fromJson(recommendation)).toList();
+    _recommendations = recommendations.map((recommendation) =>
+        RecommendationModel.fromJson(recommendation)).toList();
+  }
+
+  Future<void> _loadDescriptions() async {
+    String data = await rootBundle.loadString('assets/descriptions.json');
+    List<dynamic> descriptions = json.decode(data);
+    _descriptions = descriptions.map((description) =>
+        DescriptionModel.fromJson(description)).toList();
   }
 }
